@@ -21,8 +21,7 @@ Create file composer.json
 {
     "require": {
     	"php": ">=5.4.0",
-        "yorch/v3sdk" : "dev-master",
-        "curl/curl": "2.0.0-alpha1"
+        "yorch/v3sdk" : "dev-master"
     }
 }
 
@@ -35,7 +34,11 @@ Execute composer.phar install
 
 $v3 = V3Sdk::getInstance('http://v3-japt.rhcloud.com/', "KEY");
 
-echo $v3->getUrl();
+$data = array('DATA' => 111, 'NAME' => 'japt');
+
+$result = $v3->newObject('v3', $data);
+
+var_dump($result);
 
 ~~~
 

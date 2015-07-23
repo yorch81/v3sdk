@@ -1,5 +1,5 @@
 <?php
-require_once('vendor/autoload.php');
+require_once('V3Sdk.class.php');
 
 /**
  * V3SdkTest
@@ -35,7 +35,7 @@ class V3SdkTest extends PHPUnit_Framework_TestCase
      * Setup Test
      */
     protected function setUp() {
-        $url = 'http://v3-japt.rhcloud.com/';
+        $url = 'http://v3ctorwh.localhost/';
         $key = "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890";
 
     	$this->v3ctor = V3Sdk::getInstance($url, $key);
@@ -58,6 +58,86 @@ class V3SdkTest extends PHPUnit_Framework_TestCase
         	$expected = "OK";
 
         $this->assertEquals($expected, "OK");
+    }
+
+    /**
+     * Test Find Object
+     */
+    public function testFindObject() {
+        $doc = array('r' => 666);
+
+        $r = $this->v3ctor->newObject("demo", $doc);
+
+        $id = V3Sdk::getId($r['_id']);
+
+        $result = $this->v3ctor->findObject("demo", $id);
+
+        $total = count($result);
+
+        $this->assertGreaterThan(0, $total);
+    }
+
+    /**
+     * Test Query
+     */
+    public function testQuery() {
+        $doc = array('r' => 666);
+
+        $r = $this->v3ctor->newObject("demo", $doc);
+
+        $result = $this->v3ctor->query("demo", $doc);
+
+        $total = count($result);
+
+        $this->assertGreaterThan(0, $total);
+    }
+
+    /**
+     * Test New Object
+     */
+    public function testNewObject() {
+        $expected = 666;
+        $doc = array('r' => 666);
+
+        $newObject = $this->v3ctor->newObject("demo", $doc);
+
+        $result = $newObject['r'];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test Update Object
+     */
+    public function testUpdateObject() {
+        $expected = true;
+        $doc = array('r' => 666);
+
+        $newObject = $this->v3ctor->newObject("demo", $doc);
+
+        $id = V3Sdk::getId($newObject['_id']);
+
+        $doc = array('r' => 777);
+
+        $result = $this->v3ctor->updateObject("demo", $id, $doc);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test Delete Object
+     */
+    public function testDeleteObject() {
+        $expected = true;
+        $doc = array('r' => 666);
+
+        $newObject = $this->v3ctor->newObject("demo", $doc);
+
+        $id = V3Sdk::getId($newObject['_id']);
+
+        $result = $this->v3ctor->deleteObject("demo", $id);
+
+        $this->assertEquals($expected, $result);
     }
 
 }
