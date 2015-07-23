@@ -1,0 +1,22 @@
+{
+    "name": "yorch/v3sdk",
+    "description": "V3ctor WareHouse Php Sdk",
+    "keywords": ["WareHouse", "Cloud", "REST"],
+    "homepage": "https://github.com/yorch81/v3sdk",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Jorge Alberto Ponce Turrubiates",
+            "email": "the.yorch@gmail.com",
+            "homepage": "http://the-yorch.blogspot.mx/"
+        }
+    ],
+    "require": {
+    	"php": ">=5.4.0",
+        "curl/curl": "1.2.1"
+    },
+    "autoload": {
+        "files": ["V3Sdk.class.php"]
+    }
+}

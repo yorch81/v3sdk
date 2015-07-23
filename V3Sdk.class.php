@@ -1,5 +1,4 @@
 <?php
-
 /**
  * V3Sdk 
  *
@@ -56,6 +55,15 @@ class V3Sdk
 	private $_key;
 
 	/**
+     * Connected Flag
+     * 
+     * @var string $_connected Connected Flag
+     *
+     * @access private
+     */
+	private $_connected = false;
+
+	/**
 	 * Constructor of class
 	 * 
 	 * @param string $v3Url    V3ctor URL
@@ -65,6 +73,8 @@ class V3Sdk
 	{
 		$this->_url = $v3Url;
 		$this->_key = $v3Key;
+
+		$this->_connected = $this->welcome();
 	}
 
 	/**
@@ -108,30 +118,26 @@ class V3Sdk
 	}
 
 	/**
+	 * Check if is Connected
+	 * 
+	 * @return boolean
+	 */
+	public function isConnected()
+	{
+		return $this->_connected;
+	}
+
+	/**
 	 * Check URL
 	 * 
 	 * @return boolean
 	 */
 	private function welcome()
 	{
-		$handler = curl_init($this->_url); 
-		curl_setopt($handler, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2");  
-        curl_setopt($handler, CURLOPT_HEADER, false);  
-        curl_setopt($handler, CURLOPT_HTTPHEADER, array("Accept-Language: es-es,en"));  
-        curl_setopt($handler, CURLOPT_SSL_VERIFYPEER, false);  
-        curl_setopt($handler, CURLOPT_SSL_VERIFYHOST, false);  
-        curl_setopt($handler, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);  
-        curl_setopt($handler, CURLOPT_RETURNTRANSFER,true);  
-        curl_setopt($handler, CURLOPT_CONNECTTIMEOUT, 5);  
-        curl_setopt($handler, CURLOPT_TIMEOUT, 60);  
-        curl_setopt($handler, CURLOPT_AUTOREFERER, TRUE);  
-		curl_exec ($handler); 
+		$curl = new Curl\Curl();
+		$curl->get($this->_url);
 
-		$code = curl_getinfo($handler, CURLINFO_HTTP_CODE);
-
-		curl_close($handler);  
-
-		return $code==200?true:false;
+		return (! $curl->error);
 	}
 
 	/**

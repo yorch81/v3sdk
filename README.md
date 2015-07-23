@@ -21,7 +21,8 @@ Create file composer.json
 {
     "require": {
     	"php": ">=5.4.0",
-        "yorch/v3sdk" : "dev-master"
+        "yorch/v3sdk" : "dev-master",
+        "curl/curl": "2.0.0-alpha1"
     }
 }
 
