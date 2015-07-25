@@ -32,13 +32,43 @@ Execute composer.phar install
 ## Example ##
 ~~~
 
-$v3 = V3Sdk::getInstance('http://v3-japt.rhcloud.com/', "KEY");
+// Get Instance
+$v3 = V3Sdk::getInstance('http://v3-japt.rhcloud.com/', "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890");
 
-$data = array('DATA' => 111, 'NAME' => 'japt');
+// Check if Connected
+if ($v3->isConnected()){	
+	$data = array('DATA' => 111, 'NAME' => 'jorge');
 
-$result = $v3->newObject('v3', $data);
+	// Insert new Object
+	$result = $v3->newObject('v3', $data);
+	var_dump($result);
 
-var_dump($result);
+	// Get Id
+	$_id = V3Sdk::getId($result['_id']);
+
+	// Get Id for MySQL Case
+	//$_id = $result[0]->_id;
+
+	// Update Object
+	$data = array('DATA' => 111, 'NAME' => 'yorch');
+	$result = $v3->updateObject('v3', $_id, $data);
+
+	// Find By Id
+	$result = $v3->findObject('v3', $_id);
+	var_dump($result);
+
+	// Find By Pattern
+	$result = $v3->query('v3', $data);
+	var_dump($result);
+
+	// Foreach Result
+	foreach ($result as $item) {
+		echo V3Sdk::getId($item->_id) . "\n";
+	}
+	
+	// Delete Object
+	$result = $v3->deleteObject('v3', $_id);
+}
 
 ~~~
 
