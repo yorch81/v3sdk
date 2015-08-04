@@ -33,7 +33,7 @@ Execute composer.phar install
 ~~~
 
 // Get Instance
-$v3 = V3Sdk::getInstance('http://v3-japt.rhcloud.com/', "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890");
+$v3 = V3Sdk::getInstance('http://v3-yorch.rhcloud.com/', "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890");
 
 // Check if Connected
 if ($v3->isConnected()){	

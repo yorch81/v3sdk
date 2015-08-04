@@ -35,7 +35,7 @@ class V3SdkTest extends PHPUnit_Framework_TestCase
      * Setup Test
      */
     protected function setUp() {
-        $url = 'http://v3ctorwh.localhost/';
+        $url = 'http://v3-yorch.rhcloud.com/';
         $key = "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890";
 
     	$this->v3ctor = V3Sdk::getInstance($url, $key);
