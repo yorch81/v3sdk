@@ -16,21 +16,20 @@ For run Unit Test, complete information connection and execute the next commands
 
 ## Installation ##
 Create file composer.json
-~~~
 
+```json
 {
     "require": {
     	"php": ">=5.4.0",
         "yorch/v3sdk" : "dev-master"
     }
 }
-
-~~~
+```
 
 Execute composer.phar install
 
 ## Example ##
-~~~
+```php
 
 // Get Instance
 $v3 = V3Sdk::getInstance('http://v3-yorch.rhcloud.com/', "lYltuNtYYbYRFC7QWwHn9b5aH2UJMk1234567890");
@@ -70,7 +69,7 @@ if ($v3->isConnected()){
 	$result = $v3->deleteObject('v3', $_id);
 }
 
-~~~
+```
 
 ## Notes ##
 V3Sdk PHP uses CURL for access to V3ctor WareHouse.
