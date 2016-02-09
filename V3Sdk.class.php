@@ -316,6 +316,9 @@ class V3Sdk
 		$retValue = array();
 		$url = $this->_url . $entity . '?auth=' . $this->_key;
 
+		// Remove Id
+		unset($jsonObject["_id"]);
+
 		$jsonData = json_encode($jsonObject);
 
 		// Init CURL
