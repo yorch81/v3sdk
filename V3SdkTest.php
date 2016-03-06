@@ -49,18 +49,6 @@ class V3SdkTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Is Connected
-     */
-    public function testIsConnected() {
-        $expected = "";
-
-        if ($this->v3ctor->isConnected())
-        	$expected = "OK";
-
-        $this->assertEquals($expected, "OK");
-    }
-
-    /**
      * Test Find Object
      */
     public function testFindObject() {

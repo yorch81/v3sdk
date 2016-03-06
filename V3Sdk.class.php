@@ -84,8 +84,6 @@ class V3Sdk
 		if (!extension_loaded('curl')) {
             die("CURL PHP Module not loaded !!!");
         }
-
-		$this->_connected = $this->welcome();
 	}
 
 	/**
@@ -129,16 +127,6 @@ class V3Sdk
 	}
 
 	/**
-	 * Check if is Connected
-	 * 
-	 * @return boolean
-	 */
-	public function isConnected()
-	{
-		return $this->_connected;
-	}
-
-	/**
 	 * Init CURL Resource
 	 * 
 	 * @param  string $url URL
@@ -147,16 +135,16 @@ class V3Sdk
 	{
 		$this->_curl = curl_init($url);
 
-		curl_setopt($this->_curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2");  
-        curl_setopt($this->_curl, CURLOPT_HEADER, false);  
-        curl_setopt($this->_curl, CURLOPT_HTTPHEADER, array("Accept-Language: es-es,en"));  
-        curl_setopt($this->_curl, CURLOPT_SSL_VERIFYPEER, false);  
-        curl_setopt($this->_curl, CURLOPT_SSL_VERIFYHOST, false);  
-        curl_setopt($this->_curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);  
-        curl_setopt($this->_curl, CURLOPT_RETURNTRANSFER,true);  
-        curl_setopt($this->_curl, CURLOPT_CONNECTTIMEOUT, 5);  
-        curl_setopt($this->_curl, CURLOPT_TIMEOUT, 60);  
-        curl_setopt($this->_curl, CURLOPT_AUTOREFERER, TRUE);
+		curl_setopt($this->_curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2");
+		curl_setopt($this->_curl, CURLOPT_HEADER, false);
+		curl_setopt($this->_curl, CURLOPT_HTTPHEADER, array("Accept-Language: es-es,en"));
+		curl_setopt($this->_curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($this->_curl, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($this->_curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+		curl_setopt($this->_curl, CURLOPT_RETURNTRANSFER,true);
+		curl_setopt($this->_curl, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($this->_curl, CURLOPT_TIMEOUT, 60);
+		curl_setopt($this->_curl, CURLOPT_AUTOREFERER, TRUE);
 	}
 
 	/**
